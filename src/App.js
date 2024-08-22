@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import Calculator from "./Calculator";
 import './App.css';
 
-function App() {
-  return (
+const App = (props) => {
+    const [x, setX] = useState();
+    const [y, setY] = useState();
+    const [operation , setOperation] = useState('add');
+
+return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <input type="number" value={x} onChange={(e)  => setX(Number(e.target.value))} />
+        <input type="number" value={y} onChange={(e)  => setY(Number(e.target.value))} />
+
+        <button onClick={() => setOperation('add')}>Add</button>
+        <button onClick={() => setOperation('minus')}>Subtract</button>
+        <button onClick={() => setOperation('times')}>Multiply</button>
+        <button onClick={() => setOperation('divide')}>Divide</button>
+        <button onClick={() => setOperation('power')}>Power</button>
+
+        <Calculator x={x} y={y} operation={operation} />
     </div>
   );
-}
+};
 
 export default App;
